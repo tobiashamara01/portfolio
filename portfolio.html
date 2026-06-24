@@ -1,0 +1,1716 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tobiáš Hamara — Brand & Event Production</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --black: #0A0A0A;
+    --white: #F5F5F5;
+    --gold: #C8A96E;
+    --gray: #888;
+    --dark: #141414;
+    --card: #1A1A1A;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 60px;
+    background: rgba(10,10,10,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(200,169,110,0.15);
+  }
+
+  .nav-logo {
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--white);
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 40px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--gray);
+    text-decoration: none;
+    font-size: 13px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--gold); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 0 60px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #0A0A0A 0%, #1a1008 50%, #0A0A0A 100%);
+  }
+
+  .hero-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 70% 50%, rgba(200,169,110,0.08) 0%, transparent 60%);
+  }
+
+  /* Hero image placeholder */
+  .hero-img-placeholder {
+    position: absolute;
+    right: 0; top: 0; bottom: 0;
+    width: 50%;
+    background: var(--dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 12px;
+    border-left: 1px solid rgba(200,169,110,0.1);
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .hero-img-placeholder:hover { background: #1f1f1f; }
+
+  .placeholder-icon {
+    width: 60px; height: 60px;
+    border: 2px dashed rgba(200,169,110,0.4);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 24px;
+    color: rgba(200,169,110,0.4);
+  }
+
+  .placeholder-text {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(200,169,110,0.4);
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 55%;
+  }
+
+  .hero-label {
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 24px;
+  }
+
+  .hero-name {
+    font-size: clamp(48px, 6vw, 88px);
+    font-weight: 800;
+    line-height: 0.95;
+    letter-spacing: -2px;
+    margin-bottom: 24px;
+  }
+
+  .hero-name span {
+    color: var(--gold);
+    font-style: italic;
+  }
+
+  .hero-desc {
+    font-size: 16px;
+    color: var(--gray);
+    line-height: 1.7;
+    max-width: 480px;
+    margin-bottom: 48px;
+  }
+
+  .hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--gold);
+    color: var(--black);
+    text-decoration: none;
+    padding: 16px 32px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: all 0.2s;
+  }
+
+  .hero-cta:hover {
+    background: var(--white);
+    transform: translateY(-2px);
+  }
+
+  .hero-stats {
+    position: absolute;
+    right: 60px;
+    bottom: 80px;
+    display: flex;
+    gap: 48px;
+    z-index: 3;
+  }
+
+  .stat-item { text-align: center; }
+
+  .stat-num {
+    font-size: 36px;
+    font-weight: 800;
+    color: var(--gold);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gray);
+    margin-top: 6px;
+  }
+
+  /* SECTION COMMONS */
+  section { padding: 120px 60px; }
+
+  .section-label {
+    font-size: 10px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+
+  .section-title {
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -1px;
+    margin-bottom: 60px;
+  }
+
+  .gold-line {
+    width: 60px;
+    height: 2px;
+    background: var(--gold);
+    margin: 20px 0 60px;
+  }
+
+  /* ── PROJECTS SLIDER ── */
+  .projects {
+    background: var(--black);
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .projects-header {
+    padding: 80px 60px 48px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(200,169,110,0.1);
+  }
+
+  .projects-nav-arrows {
+    display: flex;
+    gap: 8px;
+  }
+
+  .proj-arrow {
+    width: 48px; height: 48px;
+    border: 1px solid rgba(200,169,110,0.3);
+    background: none;
+    color: var(--gold);
+    font-size: 18px;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.2s, color 0.2s;
+  }
+  .proj-arrow:hover { background: var(--gold); color: var(--black); }
+
+  /* Main slider layout */
+  .projects-slider {
+    display: flex;
+    flex: 1;
+  }
+
+  /* LEFT — project list, always visible */
+  .proj-list {
+    width: 42%;
+    border-right: 1px solid rgba(200,169,110,0.08);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0;
+  }
+
+  .proj-list-item {
+    padding: 28px 60px;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s;
+  }
+
+  .proj-list-item::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+    background: var(--gold);
+    transform: scaleY(0);
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transform-origin: bottom;
+  }
+
+  .proj-list-item.active::before { transform: scaleY(1); }
+  .proj-list-item:hover { background: rgba(200,169,110,0.03); }
+  .proj-list-item.active { background: rgba(200,169,110,0.05); }
+
+  .proj-list-num {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: rgba(200,169,110,0.3);
+    margin-bottom: 8px;
+    transition: color 0.3s;
+  }
+  .proj-list-item.active .proj-list-num { color: var(--gold); }
+
+  .proj-list-name {
+    font-size: clamp(16px, 2vw, 22px);
+    font-weight: 700;
+    color: rgba(245,245,245,0.3);
+    line-height: 1.2;
+    transition: color 0.3s;
+  }
+  .proj-list-item.active .proj-list-name,
+  .proj-list-item:hover .proj-list-name { color: var(--white); }
+
+  .proj-list-tag {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: transparent;
+    margin-top: 6px;
+    transition: color 0.3s;
+    height: 16px;
+  }
+  .proj-list-item.active .proj-list-tag { color: rgba(200,169,110,0.6); }
+
+  /* Progress bar on active */
+  .proj-progress {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: rgba(200,169,110,0.1);
+    overflow: hidden;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .proj-list-item.active .proj-progress { opacity: 1; }
+  .proj-progress-bar {
+    height: 100%;
+    background: var(--gold);
+    width: 0%;
+    transition: width linear;
+  }
+
+  /* RIGHT — preview */
+  .proj-preview {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+    background: #111;
+  }
+
+  .proj-slide {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transform: translateX(30px);
+    pointer-events: none;
+  }
+
+  .proj-slide.active {
+    opacity: 1;
+    transform: translateX(0);
+    pointer-events: all;
+  }
+
+  .proj-slide.exit {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+
+  .proj-slide-img {
+    flex: 1;
+    object-fit: cover;
+    width: 100%;
+    display: block;
+    transition: transform 8s ease;
+  }
+
+  .proj-slide.active .proj-slide-img { transform: scale(1.04); }
+
+  .proj-slide-placeholder {
+    flex: 1;
+    background: #1a1a1a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 12px;
+    border: 1px dashed rgba(200,169,110,0.1);
+  }
+  .proj-slide-placeholder span {
+    font-size: 10px; letter-spacing: 3px;
+    text-transform: uppercase; color: rgba(200,169,110,0.25);
+  }
+
+  .proj-slide-info {
+    padding: 32px 40px;
+    background: var(--black);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    border-top: 1px solid rgba(200,169,110,0.1);
+  }
+
+  .proj-slide-meta {
+    font-size: 12px;
+    color: var(--gray);
+    letter-spacing: 1px;
+  }
+
+  .proj-slide-cta {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--gold);
+    color: var(--black);
+    font-size: 10px; font-weight: 700;
+    letter-spacing: 2px; text-transform: uppercase;
+    padding: 12px 24px;
+    cursor: pointer;
+    border: none;
+    transition: background 0.2s, transform 0.2s;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .proj-slide-cta:hover { background: var(--white); transform: translateY(-2px); }
+
+  /* ── MODAL ── */
+  .modal-backdrop {
+    position: fixed; inset: 0; z-index: 1000;
+    background: rgba(0,0,0,0);
+    backdrop-filter: blur(0px);
+    display: flex; align-items: center; justify-content: center;
+    pointer-events: none;
+    transition: background 0.4s ease, backdrop-filter 0.4s ease;
+  }
+  .modal-backdrop.open {
+    background: rgba(0,0,0,0.85);
+    backdrop-filter: blur(16px);
+    pointer-events: all;
+  }
+
+  .modal {
+    background: var(--card);
+    width: 90vw; max-width: 900px;
+    max-height: 88vh;
+    overflow-y: auto;
+    position: relative;
+    transform: scale(0.88) translateY(40px);
+    opacity: 0;
+    transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.4s ease;
+    border: 1px solid rgba(200,169,110,0.15);
+  }
+  .modal-backdrop.open .modal {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+
+  .modal-img {
+    width: 100%; aspect-ratio: 16/9;
+    object-fit: cover; display: block;
+    background: #222;
+  }
+  .modal-img-placeholder {
+    width: 100%; aspect-ratio: 16/9;
+    background: #1a1a1a;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; letter-spacing: 2px; text-transform: uppercase;
+    color: rgba(200,169,110,0.3);
+  }
+
+  .modal-body { padding: 40px 48px 48px; }
+
+  .modal-tag {
+    font-size: 9px; letter-spacing: 4px; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 12px;
+  }
+  .modal-title {
+    font-size: 32px; font-weight: 800; letter-spacing: -1px;
+    line-height: 1.1; margin-bottom: 8px;
+  }
+  .modal-meta {
+    font-size: 12px; color: var(--gray);
+    letter-spacing: 1px; margin-bottom: 24px;
+  }
+
+  .modal-divider {
+    height: 1px; background: rgba(200,169,110,0.15);
+    margin: 24px 0;
+  }
+
+  .modal-desc {
+    font-size: 15px; color: rgba(245,245,245,0.7);
+    line-height: 1.8; margin-bottom: 32px;
+  }
+
+  .modal-tags {
+    display: flex; flex-wrap: wrap; gap: 8px;
+  }
+  .modal-tag-pill {
+    padding: 6px 14px;
+    border: 1px solid rgba(200,169,110,0.25);
+    font-size: 10px; letter-spacing: 1px;
+    text-transform: uppercase; color: var(--gold);
+  }
+
+  .modal-close {
+    position: absolute; top: 20px; right: 20px;
+    width: 44px; height: 44px;
+    background: rgba(0,0,0,0.7);
+    border: 1px solid rgba(200,169,110,0.3);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; color: var(--white);
+    font-size: 18px; line-height: 1;
+    transition: background 0.2s, transform 0.2s;
+    z-index: 10;
+  }
+  .modal-close:hover { background: var(--gold); color: var(--black); transform: rotate(90deg); }
+
+  /* ABOUT */
+  .about {
+    background: var(--black);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .about-img-placeholder {
+    aspect-ratio: 3/4;
+    background: var(--card);
+    border: 1px dashed rgba(200,169,110,0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .about-img-placeholder:hover { background: #222; }
+
+  .about-content .section-label { margin-bottom: 8px; }
+
+  .about-content h2 {
+    font-size: clamp(28px, 3vw, 44px);
+    font-weight: 800;
+    letter-spacing: -1px;
+    line-height: 1.1;
+    margin-bottom: 24px;
+  }
+
+  .about-content p {
+    font-size: 15px;
+    color: var(--gray);
+    line-height: 1.8;
+    margin-bottom: 16px;
+  }
+
+  .skills-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 32px;
+  }
+
+  .skill-tag {
+    padding: 8px 16px;
+    border: 1px solid rgba(200,169,110,0.3);
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  /* SERVICES */
+  .services { background: var(--dark); }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2px;
+  }
+
+  .service-card {
+    background: var(--black);
+    padding: 48px 36px;
+    transition: background 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .service-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--gold);
+    transform: scaleX(0);
+    transition: transform 0.3s;
+    transform-origin: left;
+  }
+
+  .service-card:hover::before { transform: scaleX(1); }
+  .service-card:hover { background: #111; }
+
+  .service-num {
+    font-size: 48px;
+    font-weight: 800;
+    color: rgba(200,169,110,0.15);
+    line-height: 1;
+    margin-bottom: 24px;
+    font-style: italic;
+  }
+
+  .service-title {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 16px;
+  }
+
+  .service-desc {
+    font-size: 14px;
+    color: var(--gray);
+    line-height: 1.7;
+    margin-bottom: 24px;
+  }
+
+  .service-items {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .service-items li {
+    font-size: 12px;
+    color: rgba(200,169,110,0.7);
+    letter-spacing: 0.5px;
+    padding-left: 16px;
+    position: relative;
+  }
+
+  .service-items li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+  }
+
+  /* PROCESS */
+  .process {
+    background: var(--black);
+    padding: 120px 60px;
+  }
+
+  .process-steps {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0;
+    margin-top: 60px;
+    border: 1px solid rgba(200,169,110,0.1);
+  }
+
+  .step {
+    padding: 40px 28px;
+    border-right: 1px solid rgba(200,169,110,0.1);
+    transition: background 0.2s;
+  }
+
+  .step:last-child { border-right: none; }
+  .step:hover { background: rgba(200,169,110,0.04); }
+
+  .step-num {
+    font-size: 40px;
+    font-weight: 800;
+    color: rgba(200,169,110,0.2);
+    line-height: 1;
+    margin-bottom: 20px;
+    font-style: italic;
+  }
+
+  .step-title {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+
+  .step-desc {
+    font-size: 13px;
+    color: var(--gray);
+    line-height: 1.6;
+  }
+
+  /* CTA */
+  .cta-section {
+    background: var(--gold);
+    padding: 100px 60px;
+    text-align: center;
+  }
+
+  .cta-section h2 {
+    font-size: clamp(32px, 5vw, 64px);
+    font-weight: 800;
+    color: var(--black);
+    letter-spacing: -2px;
+    line-height: 1;
+    margin-bottom: 24px;
+  }
+
+  .cta-section p {
+    font-size: 16px;
+    color: rgba(10,10,10,0.6);
+    margin-bottom: 48px;
+  }
+
+  .cta-email {
+    display: inline-block;
+    background: var(--black);
+    color: var(--gold);
+    text-decoration: none;
+    padding: 20px 48px;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: all 0.2s;
+  }
+
+  .cta-email:hover {
+    background: #111;
+    transform: translateY(-3px);
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--black);
+    padding: 40px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(200,169,110,0.1);
+  }
+
+  .footer-logo {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+  }
+
+  .footer-links a {
+    font-size: 12px;
+    color: var(--gray);
+    text-decoration: none;
+    letter-spacing: 1px;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover { color: var(--gold); }
+
+  .footer-copy {
+    font-size: 11px;
+    color: rgba(136,136,136,0.5);
+    letter-spacing: 1px;
+  }
+
+  /* How to add photo note */
+  .add-photo-note {
+    display: none;
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background: var(--card);
+    border: 1px solid var(--gold);
+    padding: 20px 24px;
+    max-width: 320px;
+    z-index: 200;
+  }
+
+  .add-photo-note h4 {
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+
+  .add-photo-note p {
+    font-size: 12px;
+    color: var(--gray);
+    line-height: 1.6;
+  }
+
+  .add-photo-note button {
+    position: absolute;
+    top: 12px; right: 12px;
+    background: none;
+    border: none;
+    color: var(--gray);
+    cursor: pointer;
+    font-size: 16px;
+  }
+
+  /* ── CURSOR ── */
+  .cursor {
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    mix-blend-mode: difference;
+  }
+  .cursor-dot {
+    width: 8px; height: 8px;
+    background: var(--gold);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s;
+  }
+  .cursor-ring {
+    width: 40px; height: 40px;
+    border: 1px solid rgba(200,169,110,0.6);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.3s, height 0.3s, border-color 0.3s, transform 0.15s;
+  }
+  body:has(a:hover) .cursor-ring,
+  body:has(button:hover) .cursor-ring {
+    width: 60px; height: 60px;
+    border-color: var(--gold);
+  }
+
+  /* ── LOADING SCREEN ── */
+  #loader {
+    position: fixed;
+    inset: 0;
+    background: var(--black);
+    z-index: 9998;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 24px;
+    transition: opacity 0.6s, visibility 0.6s;
+  }
+  #loader.hidden { opacity: 0; visibility: hidden; }
+  .loader-name {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    color: var(--white);
+  }
+  .loader-bar-wrap {
+    width: 200px;
+    height: 1px;
+    background: rgba(200,169,110,0.2);
+    overflow: hidden;
+  }
+  .loader-bar {
+    height: 100%;
+    background: var(--gold);
+    width: 0%;
+    animation: loadBar 1.2s ease forwards;
+  }
+  @keyframes loadBar {
+    to { width: 100%; }
+  }
+
+  /* ── MARQUEE ── */
+  .marquee-wrap {
+    overflow: hidden;
+    background: var(--gold);
+    padding: 14px 0;
+    white-space: nowrap;
+  }
+  .marquee-track {
+    display: inline-flex;
+    animation: marquee 18s linear infinite;
+  }
+  .marquee-item {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--black);
+    padding: 0 40px;
+  }
+  .marquee-sep {
+    color: rgba(10,10,10,0.4);
+    padding: 0 8px;
+  }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* ── HERO ANIMATIONS ── */
+  .hero-label { opacity: 0; animation: fadeUp 0.8s 1.4s ease forwards; }
+  .hero-name   { opacity: 0; animation: fadeUp 0.9s 1.6s ease forwards; }
+  .hero-desc   { opacity: 0; animation: fadeUp 0.8s 1.8s ease forwards; }
+  .hero-cta    { opacity: 0; animation: fadeUp 0.8s 2.0s ease forwards; }
+  .hero-stats  { opacity: 0; animation: fadeUp 0.8s 2.1s ease forwards; }
+  .hero-img-placeholder { opacity: 0; animation: fadeIn 1.2s 1.6s ease forwards; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+  @keyframes slideLeft {
+    from { opacity: 0; transform: translateX(-40px); }
+    to   { opacity: 1; transform: translateX(0); }
+  }
+  @keyframes scaleIn {
+    from { opacity: 0; transform: scale(0.92); }
+    to   { opacity: 1; transform: scale(1); }
+  }
+
+  /* ── SCROLL REVEAL ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.from-left {
+    transform: translateX(-40px);
+  }
+  .reveal.from-right {
+    transform: translateX(40px);
+  }
+  .reveal.scale {
+    transform: scale(0.94);
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* Stagger delays */
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+  .reveal-delay-4 { transition-delay: 0.4s; }
+  .reveal-delay-5 { transition-delay: 0.5s; }
+
+  /* ── GOLD LINE ANIMATION ── */
+  .gold-line {
+    width: 0 !important;
+    transition: width 0.8s ease !important;
+  }
+  .gold-line.visible { width: 60px !important; }
+
+  /* ── PROJECT CARD HOVER ENHANCE ── */
+  .project-overlay {
+    background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.2) 50%, transparent 100%);
+  }
+  .project-name, .project-tag, .project-meta {
+    transform: translateY(8px);
+    transition: transform 0.4s ease, opacity 0.4s ease;
+  }
+  .project-card:hover .project-name,
+  .project-card:hover .project-tag,
+  .project-card:hover .project-meta {
+    transform: translateY(0);
+  }
+
+  /* ── SKILL TAGS ANIMATION ── */
+  .skill-tag {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.4s ease, transform 0.4s ease, border-color 0.2s, color 0.2s;
+  }
+  .skill-tag.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .skill-tag:hover {
+    border-color: var(--gold);
+    background: rgba(200,169,110,0.08);
+  }
+
+  /* ── NAV SCROLL SHRINK ── */
+  nav { transition: padding 0.3s ease, background 0.3s ease; }
+  nav.scrolled { padding: 16px 60px; }
+
+  @media (max-width: 900px) {
+    nav { padding: 20px 24px; }
+    .nav-links { display: none; }
+    section { padding: 80px 24px; }
+    .hero { padding: 0 24px 60px; }
+    .hero-content { max-width: 100%; }
+    .hero-name { font-size: 42px; }
+    .hero-img-placeholder { display: none; }
+    .hero-stats { position: relative; right: auto; bottom: auto; margin-top: 48px; justify-content: flex-start; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .project-card.large { grid-column: span 1; }
+    .about { grid-template-columns: 1fr; }
+    .about-img-placeholder { display: none; }
+    .services-grid { grid-template-columns: 1fr; }
+    .process-steps { grid-template-columns: 1fr 1fr; }
+    .step { border-right: none; border-bottom: 1px solid rgba(200,169,110,0.1); }
+    footer { flex-direction: column; gap: 20px; text-align: center; }
+    .footer-links { flex-wrap: wrap; justify-content: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- CURSOR -->
+<div class="cursor" id="cursorDot" style="position:fixed;top:0;left:0;"><div class="cursor-dot"></div></div>
+<div class="cursor" id="cursorRing" style="position:fixed;top:0;left:0;"><div class="cursor-ring"></div></div>
+
+<!-- LOADER -->
+<div id="loader">
+  <span class="loader-name">TH</span>
+  <div class="loader-bar-wrap"><div class="loader-bar"></div></div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">TH</a>
+  <ul class="nav-links">
+    <li><a href="#projects">Projekty</a></li>
+    <li><a href="#services">Služby</a></li>
+    <li><a href="#about">O mne</a></li>
+    <li><a href="#contact">Kontakt</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+
+  <!-- Placeholder pre hlavnú hero fotku -->
+  <div class="hero-img-placeholder" onclick="showPhotoTip()">
+    <div class="placeholder-icon">⊕</div>
+    <span class="placeholder-text">Pridaj hlavnú fotku</span>
+  </div>
+
+  <div class="hero-content">
+    <p class="hero-label">Brand & Event Production</p>
+    <h1 class="hero-name">
+      Tobiáš<br><span>Hamara</span>
+    </h1>
+    <p class="hero-desc">
+      Od prvého nápadu po finálny výsledok. Produkcia kampaní,
+      eventov a brand shootov pre značky ktoré chcú vyniknúť.
+    </p>
+    <a href="#contact" class="hero-cta">Spolupracujme →</a>
+
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-num">5+</div>
+        <div class="stat-label">Krajín</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">10+</div>
+        <div class="stat-label">Projektov</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">100%</div>
+        <div class="stat-label">V termíne</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span class="marquee-item">Brand Shoots</span><span class="marquee-sep">✦</span>
+    <span class="marquee-item">Event Produkcia</span><span class="marquee-sep">✦</span>
+    <span class="marquee-item">Medzinárodné kampane</span><span class="marquee-sep">✦</span>
+    <span class="marquee-item">Art Direction</span><span class="marquee-sep">✦</span>
+    <span class="marquee-item">Fashion Shows</span><span class="marquee-sep">✦</span>
+    <span class="marquee-item">Marketing Automation</span><span class="marquee-sep">✦</span>
+    <span class="marquee-item">Brand Shoots</span><span class="marquee-sep">✦</span>
+    <span class="marquee-item">Event Produkcia</span><span class="marquee-sep">✦</span>
+    <span class="marquee-item">Medzinárodné kampane</span><span class="marquee-sep">✦</span>
+    <span class="marquee-item">Art Direction</span><span class="marquee-sep">✦</span>
+    <span class="marquee-item">Fashion Shows</span><span class="marquee-sep">✦</span>
+    <span class="marquee-item">Marketing Automation</span><span class="marquee-sep">✦</span>
+  </div>
+</div>
+
+<!-- PROJECTS -->
+<section class="projects" id="projects">
+
+  <div class="projects-header">
+    <div>
+      <p class="section-label reveal">Vybrané práce</p>
+      <h2 class="section-title reveal reveal-delay-1" style="margin-bottom:0">Projekty</h2>
+    </div>
+    <div class="projects-nav-arrows reveal">
+      <button class="proj-arrow" id="projPrev">←</button>
+      <button class="proj-arrow" id="projNext">→</button>
+    </div>
+  </div>
+
+  <div class="projects-slider">
+
+    <!-- LEFT: names list -->
+    <div class="proj-list" id="projList">
+
+      <div class="proj-list-item active" data-index="0">
+        <div class="proj-list-num">01</div>
+        <div class="proj-list-name">NEBBIA™ — Primal Collection</div>
+        <div class="proj-list-tag">Tenerife, Španielsko</div>
+        <div class="proj-progress"><div class="proj-progress-bar"></div></div>
+      </div>
+
+      <div class="proj-list-item" data-index="1">
+        <div class="proj-list-num">02</div>
+        <div class="proj-list-name">NEBBIA™ — Y2K Fashion Show</div>
+        <div class="proj-list-tag">Event produkcia · Slovensko</div>
+        <div class="proj-progress"><div class="proj-progress-bar"></div></div>
+      </div>
+
+      <div class="proj-list-item" data-index="2">
+        <div class="proj-list-num">03</div>
+        <div class="proj-list-name">Vienna Campaign × Sexsdreams</div>
+        <div class="proj-list-tag">Brand shoot · Viedeň</div>
+        <div class="proj-progress"><div class="proj-progress-bar"></div></div>
+      </div>
+
+      <div class="proj-list-item" data-index="3">
+        <div class="proj-list-num">04</div>
+        <div class="proj-list-name">NEBBIA™ — Power Studio</div>
+        <div class="proj-list-tag">Studio produkcia · Slovensko</div>
+        <div class="proj-progress"><div class="proj-progress-bar"></div></div>
+      </div>
+
+      <div class="proj-list-item" data-index="4">
+        <div class="proj-list-num">05</div>
+        <div class="proj-list-name">NEBBIA™ — Prague Expo</div>
+        <div class="proj-list-tag">Brand event · Praha</div>
+        <div class="proj-progress"><div class="proj-progress-bar"></div></div>
+      </div>
+
+    </div>
+
+    <!-- RIGHT: preview slides -->
+    <div class="proj-preview" id="projPreview">
+
+      <div class="proj-slide active" data-index="0"
+        data-tag="Medzinárodná produkcia · Tenerife, Španielsko"
+        data-name="NEBBIA™ — Primal Collection"
+        data-meta="11 ľudí · 6 krajín · Outdoor lokácie · Kompletná logistika"
+        data-desc="End-to-end produkcia kampane pre novú kolekciu NEBBIA™. Koordinácia celého tímu na vonkajších lokáciách Tenerife. Kompletná logistika: letenky, ubytovanie, transport, povolenia, denný plán natáčania."
+        data-pills="Produkcia|Logistika|Casting|Art Direction|Outdoor|Medzinárodné">
+        <!-- <img src="photos/tenerife_main.jpg" class="proj-slide-img"> -->
+        <div class="proj-slide-placeholder"><span>📷 Tenerife — hlavná fotka</span></div>
+        <div class="proj-slide-info">
+          <span class="proj-slide-meta">11 ľudí · 6 krajín · Outdoor lokácie</span>
+          <button class="proj-slide-cta" data-open="0">Detail projektu →</button>
+        </div>
+      </div>
+
+      <div class="proj-slide" data-index="1"
+        data-tag="Event produkcia · Slovensko"
+        data-name="NEBBIA™ — Y2K Fashion Show"
+        data-meta="Stage · Casting · Run of Show · VIP event"
+        data-desc="Kompletná produkcia módnej prehliadky od nápadu po realizáciu. Stage design, svetelná a zvuková technika, casting, run of show, koordinácia tímu v deň eventu."
+        data-pills="Event produkcia|Stage Design|Casting|Run of Show|Lighting|VIP">
+        <!-- <img src="photos/show_stage.jpg" class="proj-slide-img"> -->
+        <div class="proj-slide-placeholder"><span>📷 Y2K Show — stage</span></div>
+        <div class="proj-slide-info">
+          <span class="proj-slide-meta">Stage · Casting · Run of Show · VIP event</span>
+          <button class="proj-slide-cta" data-open="1">Detail projektu →</button>
+        </div>
+      </div>
+
+      <div class="proj-slide" data-index="2"
+        data-tag="Brand shoot · Viedeň, Rakúsko"
+        data-name="Vienna Campaign × Sexsdreams"
+        data-meta="Art direction · Fashion crossover · Urban lokácie"
+        data-desc="Kampaň spájajúca fitness funkčnosť s umeleckým výrazom. Lokácie v uliciach Viedne — kanál, mosty, graffiti štvrte. Spolupráca s externým kreatívcom a fotografom."
+        data-pills="Brand Shoot|Art Direction|Fashion|Urban|Viedeň|Crossover">
+        <!-- <img src="photos/vienna_main.jpg" class="proj-slide-img"> -->
+        <div class="proj-slide-placeholder"><span>📷 Vienna — kampaňová fotka</span></div>
+        <div class="proj-slide-info">
+          <span class="proj-slide-meta">Art direction · Fashion crossover · Urban lokácie</span>
+          <button class="proj-slide-cta" data-open="2">Detail projektu →</button>
+        </div>
+      </div>
+
+      <div class="proj-slide" data-index="3"
+        data-tag="Studio produkcia · Slovensko"
+        data-name="NEBBIA™ — Power Studio Campaign"
+        data-meta="Product shots · Athlete content · Multi-day production"
+        data-desc="Viacdenná štúdiová produkcia pre kampaňové materiály Power kolekcie. Godox, Nanlite osvetlenie, koordinácia atlétov a modeliek, shot list management."
+        data-pills="Studio|Product Shots|Athlete|Multi-day|Lighting|Žilina">
+        <!-- <img src="photos/studio_shoot.jpg" class="proj-slide-img"> -->
+        <div class="proj-slide-placeholder"><span>📷 Studio shoot</span></div>
+        <div class="proj-slide-info">
+          <span class="proj-slide-meta">Product shots · Athlete content · Multi-day</span>
+          <button class="proj-slide-cta" data-open="3">Detail projektu →</button>
+        </div>
+      </div>
+
+      <div class="proj-slide" data-index="4"
+        data-tag="Brand event · Praha, CZ"
+        data-name="NEBBIA™ — Prague Expo"
+        data-meta="Gym shoot · Brand activation · Community event"
+        data-desc="Brand aktivácia na fitness expo v Prahe — booth setup, gym shoot, community event pre fanúšikov. Materiály použité v ďalšej komunikácii značky."
+        data-pills="Brand Event|Expo|Praha|Gym Shoot|Activation|Community">
+        <!-- <img src="photos/expo_prague.jpg" class="proj-slide-img"> -->
+        <div class="proj-slide-placeholder"><span>📷 Prague Expo</span></div>
+        <div class="proj-slide-info">
+          <span class="proj-slide-meta">Gym shoot · Brand activation · Community event</span>
+          <button class="proj-slide-cta" data-open="4">Detail projektu →</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-img-placeholder reveal from-left" onclick="showPhotoTip()">
+    <div class="placeholder-icon" style="font-size:32px; opacity:0.3;">👤</div>
+    <span class="placeholder-text" style="font-size:10px; letter-spacing:2px; text-transform:uppercase; color:rgba(200,169,110,0.4);">Tvoja profilová fotka</span>
+  </div>
+
+  <div class="about-content reveal from-right">
+    <p class="section-label">O mne</p>
+    <h2>Jeden človek.<br>Kompletná produkcia.</h2>
+    <div class="gold-line"></div>
+    <p>
+      Som event manager a brand producer so špecializáciou na lifestyle a fashion segment.
+      Posledné roky som budoval skúsenosti priamo s NEBBIA™ FITNESS — jednou z
+      najrýchlejšie rastúcich európskych fitness značiek.
+    </p>
+    <p>
+      Moja práca pokrýva celý proces — od prvého briefu cez logistiku, koordináciu tímu
+      a komunikáciu so dodávateľmi, až po finálny výsledok ktorý značka môže hneď použiť.
+      Rozumiem zároveň marketingovej stránke biznisu.
+    </p>
+
+    <div class="skills-list">
+      <span class="skill-tag">Event produkcia</span>
+      <span class="skill-tag">Brand shoots</span>
+      <span class="skill-tag">Art direction</span>
+      <span class="skill-tag">Casting</span>
+      <span class="skill-tag">Logistika</span>
+      <span class="skill-tag">CRM & Email</span>
+      <span class="skill-tag">Shopify</span>
+      <span class="skill-tag">Marketing automation</span>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <p class="section-label">Čo ponúkam</p>
+  <h2 class="section-title">Služby</h2>
+
+  <div class="services-grid">
+
+    <div class="service-card reveal reveal-delay-1">
+      <div class="service-num">01</div>
+      <h3 class="service-title">Brand Shoot Produkcia</h3>
+      <p class="service-desc">
+        Kompletná produkcia foto a video kampaní — lokálne aj medzinárodné.
+        Od briefu a castingu po finálne dodanie materiálov kampane.
+      </p>
+      <ul class="service-items">
+        <li>Lokálne štúdiové a outdoor produkcie</li>
+        <li>Medzinárodné lokačné kampane</li>
+        <li>Casting modeliek, atlétov a talent management</li>
+        <li>Art direction, shot list a kreatívna koordinácia</li>
+        <li>Logistika: cestovanie, ubytovanie, povolenia na lokácie</li>
+        <li>Koordinácia fotografa, kameramana a MUA na mieste</li>
+      </ul>
+    </div>
+
+    <div class="service-card reveal reveal-delay-2">
+      <div class="service-num">02</div>
+      <h3 class="service-title">Event Produkcia</h3>
+      <p class="service-desc">
+        Od módnych prehliadok po medzinárodné fitness súťaže a touring formáty.
+        Celá produkcia od A po Z — ty prídeš, ja mám všetko pripravené.
+      </p>
+      <ul class="service-items">
+        <li>Fashion show, runway a launch eventy</li>
+        <li>Fitness súťaže a expo aktivácie (Mr. Olympia, EVLS)</li>
+        <li>Touring pop-up formáty a roadshow</li>
+        <li>Stage design, svetelná a zvuková technika</li>
+        <li>Run of show a day-of koordinácia celého tímu</li>
+        <li>VIP a B2B partner eventy</li>
+      </ul>
+    </div>
+
+    <div class="service-card reveal reveal-delay-3">
+      <div class="service-num">03</div>
+      <h3 class="service-title">Brand Activation & Retail</h3>
+      <p class="service-desc">
+        Fyzická prítomnosť značky na predajných miestach a vo verejnom priestore.
+        Konzistentný vizuál, ktorý predáva aj bez teba.
+      </p>
+      <ul class="service-items">
+        <li>In-store vizuál merchandising a planogramy</li>
+        <li>Roll-upy, lightboxy a POS materiály</li>
+        <li>Pop-up stánky a brand zóny na eventoch</li>
+        <li>B2B partner aktivácie a launch eventy</li>
+        <li>Konzistentný brand identity rollout naprieč miestami</li>
+        <li>On-site koordinácia inštalácie a dohľad nad realizáciou</li>
+      </ul>
+    </div>
+
+    <div class="service-card reveal reveal-delay-4">
+      <div class="service-num">04</div>
+      <h3 class="service-title">Marketing Setup & Automation</h3>
+      <p class="service-desc">
+        Email stratégia, CRM a marketing automation pre lifestyle a e-commerce značky.
+        Systémy, ktoré komunikujú so zákazníkom aj keď ty nespíš.
+      </p>
+      <ul class="service-items">
+        <li>Newsletter stratégia a kampaňové emaily (multi-market)</li>
+        <li>Marketing automation flows (Brevo, Klaviyo)</li>
+        <li>Abandoned cart, winback a waitlist sekvencie</li>
+        <li>CRM databáza, segmentácia a správa kontaktov</li>
+        <li>Shopify / e-commerce integrácia</li>
+        <li>Mesačný retainer — priebežná správa a optimalizácia</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process" id="process">
+  <p class="section-label">Ako pracujem</p>
+  <h2 class="section-title">Jednoduchý proces</h2>
+
+  <div class="process-steps">
+    <div class="step">
+      <div class="step-num">01</div>
+      <h4 class="step-title">Brief</h4>
+      <p class="step-desc">Zavoláme si a prejdeme víziu, cieľ, rozpočet a termín.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <h4 class="step-title">Ponuka</h4>
+      <p class="step-desc">Do 48 hodín dostaneš konkrétny plán a cenovú ponuku.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <h4 class="step-title">Záloha</h4>
+      <p class="step-desc">50% záloha pred štartom. Štandard, bez prekvapení.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">04</div>
+      <h4 class="step-title">Produkcia</h4>
+      <p class="step-desc">Ja riadim celý proces — ty sa sústredíš na biznis.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">05</div>
+      <h4 class="step-title">Odovzdanie</h4>
+      <p class="step-desc">Hotový výsledok + finálna faktúra. Spolupráca bez stresu.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA / CONTACT -->
+<section class="cta-section" id="contact">
+  <h2>Poďme na to.</h2>
+  <p>Máš projekt? Napíš mi — odpoviem do 24 hodín.</p>
+  <a href="mailto:tobiashamara01@gmail.com" class="cta-email">
+    tobiashamara01@gmail.com
+  </a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-logo">Tobiáš Hamara</span>
+  <ul class="footer-links">
+    <li><a href="#projects">Projekty</a></li>
+    <li><a href="#services">Služby</a></li>
+    <li><a href="https://linkedin.com/in/tobiashamara" target="_blank">LinkedIn</a></li>
+    <li><a href="mailto:tobiashamara01@gmail.com">Email</a></li>
+  </ul>
+  <span class="footer-copy">© 2025 Tobiáš Hamara</span>
+</footer>
+
+<!-- PROJECT MODAL -->
+<div class="modal-backdrop" id="modalBackdrop">
+  <div class="modal" id="modal">
+    <button class="modal-close" id="modalClose">✕</button>
+    <div class="modal-img-placeholder" id="modalImgWrap">Fotka projektu</div>
+    <div class="modal-body">
+      <p class="modal-tag" id="modalTag"></p>
+      <h2 class="modal-title" id="modalTitle"></h2>
+      <p class="modal-meta" id="modalMeta"></p>
+      <div class="modal-divider"></div>
+      <p class="modal-desc" id="modalDesc"></p>
+      <div class="modal-tags" id="modalTags"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Photo tip note -->
+<div class="add-photo-note" id="photoNote">
+  <button onclick="document.getElementById('photoNote').style.display='none'">✕</button>
+  <h4>Ako pridať fotku</h4>
+  <p>
+    Vlož fotky do rovnakého priečinka ako tento súbor do zložky <strong>photos/</strong>.
+    Potom nahraď <code>&lt;div class="project-placeholder"&gt;</code> za:<br><br>
+    <code>&lt;img src="photos/tvoja_fotka.jpg" class="project-img"&gt;</code>
+  </p>
+</div>
+
+<script>
+  // ── LOADER ──
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      document.getElementById('loader').classList.add('hidden');
+    }, 1400);
+  });
+
+  // ── CUSTOM CURSOR ──
+  const dot  = document.getElementById('cursorDot');
+  const ring = document.getElementById('cursorRing');
+  let mx = 0, my = 0, rx = 0, ry = 0;
+
+  document.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    dot.style.transform  = `translate(${mx}px, ${my}px)`;
+  });
+
+  // Ring follows with lag
+  function animateRing() {
+    rx += (mx - rx) * 0.12;
+    ry += (my - ry) * 0.12;
+    ring.style.transform = `translate(${rx}px, ${ry}px)`;
+    requestAnimationFrame(animateRing);
+  }
+  animateRing();
+
+  // Enlarge ring on interactive elements
+  document.querySelectorAll('a, button, .project-card, .service-card').forEach(el => {
+    el.addEventListener('mouseenter', () => ring.querySelector('.cursor-ring').style.cssText = 'width:64px;height:64px;border-color:#C8A96E;transform:translate(-50%,-50%)');
+    el.addEventListener('mouseleave', () => ring.querySelector('.cursor-ring').style.cssText = '');
+  });
+
+  // ── SCROLL REVEAL (Intersection Observer) ──
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        // Don't unobserve — keep visible
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Gold line observer
+  document.querySelectorAll('.gold-line').forEach(el => {
+    const lo = new IntersectionObserver(entries => {
+      if (entries[0].isIntersecting) el.classList.add('visible');
+    }, { threshold: 0.5 });
+    lo.observe(el);
+  });
+
+  // Skill tags stagger
+  document.querySelectorAll('.skill-tag').forEach((el, i) => {
+    el.style.transitionDelay = `${i * 0.07}s`;
+    const so = new IntersectionObserver(entries => {
+      if (entries[0].isIntersecting) el.classList.add('visible');
+    }, { threshold: 0.2 });
+    so.observe(el);
+  });
+
+  // ── COUNTER ANIMATION ──
+  function animateCounter(el, target, suffix = '') {
+    const duration = 1600;
+    const start = performance.now();
+    const update = (now) => {
+      const progress = Math.min((now - start) / duration, 1);
+      const ease = 1 - Math.pow(1 - progress, 3);
+      el.textContent = Math.round(ease * target) + suffix;
+      if (progress < 1) requestAnimationFrame(update);
+    };
+    requestAnimationFrame(update);
+  }
+
+  const counterObs = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const stats = entry.target.querySelectorAll('.stat-num');
+        stats[0] && animateCounter(stats[0], 5, '+');
+        stats[1] && animateCounter(stats[1], 10, '+');
+        stats[2] && animateCounter(stats[2], 100, '%');
+        counterObs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+
+  const heroEl = document.querySelector('.hero-stats');
+  if (heroEl) counterObs.observe(heroEl.closest('section'));
+
+  // ── NAV SHRINK ON SCROLL ──
+  const nav = document.querySelector('nav');
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+
+  window.addEventListener('scroll', () => {
+    // Nav compact
+    nav.classList.toggle('scrolled', window.scrollY > 80);
+
+    // Active link highlight
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 120) current = s.getAttribute('id');
+    });
+    navLinks.forEach(a => {
+      a.style.color = a.getAttribute('href') === '#' + current ? '#C8A96E' : '';
+    });
+  });
+
+  // ── HERO PARALLAX ──
+  const heroBg = document.querySelector('.hero-bg');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY < window.innerHeight) {
+      heroBg.style.transform = `translateY(${window.scrollY * 0.3}px)`;
+    }
+  });
+
+  // ── PROJECT MODAL ──
+  const backdrop = document.getElementById('modalBackdrop');
+  const modalClose = document.getElementById('modalClose');
+
+  function openModal(card) {
+    document.getElementById('modalTag').textContent   = card.dataset.tag   || '';
+    document.getElementById('modalTitle').textContent = card.dataset.name  || '';
+    document.getElementById('modalMeta').textContent  = card.dataset.meta  || '';
+    document.getElementById('modalDesc').textContent  = card.dataset.desc  || '';
+
+    // Pills
+    const pillsWrap = document.getElementById('modalTags');
+    pillsWrap.innerHTML = '';
+    (card.dataset.pills || '').split('|').forEach(p => {
+      const span = document.createElement('span');
+      span.className = 'modal-tag-pill';
+      span.textContent = p;
+      pillsWrap.appendChild(span);
+    });
+
+    // Image — copy from slide if exists
+    const imgWrap = document.getElementById('modalImgWrap');
+    const cardImg = card.querySelector('.proj-slide-img') || card.querySelector('.project-img');
+    if (cardImg) {
+      imgWrap.outerHTML = `<img src="${cardImg.src}" class="modal-img" id="modalImgWrap">`;
+    } else {
+      imgWrap.textContent = card.dataset.name || 'Fotka projektu';
+    }
+
+    backdrop.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    backdrop.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  // Modal triggers now come from proj-slide-cta buttons
+  document.querySelectorAll('.proj-slide-cta[data-open]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const slide = document.querySelector(`.proj-slide[data-index="${btn.dataset.open}"]`);
+      if (slide) openModal(slide);
+    });
+  });
+
+  modalClose.addEventListener('click', closeModal);
+  backdrop.addEventListener('click', e => { if (e.target === backdrop) closeModal(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+  // ── PROJECTS SLIDER ──
+  (function() {
+    const listItems = Array.from(document.querySelectorAll('.proj-list-item'));
+    const slides    = Array.from(document.querySelectorAll('.proj-slide'));
+    const prevBtn   = document.getElementById('projPrev');
+    const nextBtn   = document.getElementById('projNext');
+    const AUTO_MS   = 5000;
+    let current     = 0;
+    let timer       = null;
+    let barTimer    = null;
+
+    function setSlide(idx, direction) {
+      if (idx === current) return;
+
+      // List items
+      listItems[current].classList.remove('active');
+      listItems[idx].classList.add('active');
+
+      // Slides — exit current, enter next
+      slides[current].classList.add('exit');
+      slides[current].classList.remove('active');
+
+      const entering = slides[idx];
+      // Reset direction: coming from right = translateX(30px) (default), left = -30px
+      entering.style.transform = direction === 'prev' ? 'translateX(-30px)' : 'translateX(30px)';
+      entering.style.transition = 'none';
+
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          entering.style.transition = '';
+          entering.classList.add('active');
+        });
+      });
+
+      // Clean up exit class after transition
+      const exiting = slides[current];
+      setTimeout(() => exiting.classList.remove('exit'), 700);
+
+      current = idx;
+      restartProgress();
+    }
+
+    function goNext() { setSlide((current + 1) % slides.length, 'next'); }
+    function goPrev() { setSlide((current - 1 + slides.length) % slides.length, 'prev'); }
+
+    // Auto-advance
+    function startAuto() {
+      clearInterval(timer);
+      timer = setInterval(goNext, AUTO_MS);
+    }
+
+    // Progress bar animation
+    function restartProgress() {
+      clearTimeout(barTimer);
+      // Reset all bars
+      listItems.forEach(item => {
+        const bar = item.querySelector('.proj-progress-bar');
+        if (bar) { bar.style.transition = 'none'; bar.style.width = '0%'; }
+      });
+      // Animate active bar
+      barTimer = setTimeout(() => {
+        const activeBar = listItems[current].querySelector('.proj-progress-bar');
+        if (activeBar) {
+          activeBar.style.transition = `width ${AUTO_MS}ms linear`;
+          activeBar.style.width = '100%';
+        }
+      }, 50);
+      startAuto();
+    }
+
+    // Click on list item
+    listItems.forEach(item => {
+      item.addEventListener('click', () => {
+        const idx = parseInt(item.dataset.index);
+        setSlide(idx, idx > current ? 'next' : 'prev');
+      });
+    });
+
+    // Arrow buttons
+    if (prevBtn) prevBtn.addEventListener('click', () => { goPrev(); });
+    if (nextBtn) nextBtn.addEventListener('click', () => { goNext(); });
+
+    // Pause on hover
+    const preview = document.getElementById('projPreview');
+    if (preview) {
+      preview.addEventListener('mouseenter', () => {
+        clearInterval(timer);
+        clearTimeout(barTimer);
+        const activeBar = listItems[current].querySelector('.proj-progress-bar');
+        if (activeBar) activeBar.style.transition = 'none';
+      });
+      preview.addEventListener('mouseleave', () => restartProgress());
+    }
+
+    // Keyboard
+    document.addEventListener('keydown', e => {
+      if (e.key === 'ArrowRight') goNext();
+      if (e.key === 'ArrowLeft') goPrev();
+    });
+
+    // Init
+    restartProgress();
+  })();
+
+  // ── PHOTO TIP ──
+  function showPhotoTip() {
+    document.getElementById('photoNote').style.display = 'block';
+  }
+</script>
+</body>
+</html>
